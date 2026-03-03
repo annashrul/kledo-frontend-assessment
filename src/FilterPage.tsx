@@ -57,6 +57,7 @@ export default function FilterPage() {
         : [];
 
     const selectedDistrict = availableDistricts.find((item) => item.id === districtId) ?? null;
+    const isResetDisabled = !selectedProvince && !selectedRegency && !selectedDistrict;
 
     const breadcrumbParts: string[] = [];
     if (selectedProvince) breadcrumbParts.push("›", selectedProvince.name);
@@ -190,7 +191,8 @@ export default function FilterPage() {
                     <button
                         type="button"
                         onClick={handleReset}
-                        className="mt-10 flex w-full items-center justify-center gap-2 rounded-xl border border-indigo-500 bg-white px-4 py-3 text-sm font-semibold text-indigo-600 transition hover:bg-indigo-50"
+                        disabled={isResetDisabled}
+                        className="mt-10 flex w-full items-center justify-center gap-2 rounded-xl border border-indigo-500 bg-white px-4 py-3 text-sm font-semibold text-indigo-600 transition hover:bg-indigo-50 disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-50 disabled:text-slate-400"
                     >
                         Reset
                     </button>
